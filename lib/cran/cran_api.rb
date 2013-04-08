@@ -6,8 +6,6 @@ require 'rubygems/package'
 require 'zlib'
 
 module CranApi
-  class PackagesListParsingError < StandardError; end
-  
   class << self
     
     def grab_packages(url)
@@ -35,6 +33,7 @@ module CranApi
   
   module PackageApi
     class PackagesInfoParsingError < StandardError; end
+    
     class << self
       
       def grab_package_info options
