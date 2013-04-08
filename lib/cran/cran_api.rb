@@ -37,17 +37,26 @@ module CranApi
         gz = Zlib::GzipReader.new(source)
       end
       
-      def parse_archived_package gz
+      def get_archived_package_description gz
         Gem::Package::TarReader.new(gz).each do |entry|
           if(entry.file? && entry.full_name =~ /DESCRIPTION/)
             return entry.read
           end
         end
+        
+        return nil
+      end
+      
+      def parse_package_description(content)
+        package = Dcf.parse(content)
+        return package[0] if package[0]
+        return nil
       end
       
       def url_for_package options
         return "#{URL}/#{options.name}/#{options.version}"
       end
+      
       
     end
   end
