@@ -56,8 +56,7 @@ module CranApi
       def url_for_package options
         return "#{URL}/#{options.name}/#{options.version}"
       end
-      
-      
+ 
     end
   end
   

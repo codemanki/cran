@@ -10,4 +10,7 @@ class Package < ActiveRecord::Base
     
   end
   
+  def add_version options
+    Version.insert_version(self, options)
+  end
 end
