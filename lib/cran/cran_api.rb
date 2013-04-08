@@ -5,8 +5,6 @@ require "dcf"
 require 'rubygems/package'
 require 'zlib'
 
-URL = "http://cran.r-project.org/src/contrib/"
-
 module CranApi
   class PackagesListParsingError < StandardError; end
   
@@ -25,6 +23,14 @@ module CranApi
       return [] if !content || content.blank?
       Dcf.parse(content)
     end
+    
+    ##for demo
+    
+    def grab_packages_locally
+      contents = File.read(File.dirname(__FILE__) + '/../../test/packages/packages_couple.txt')
+      parse_packages(contents)
+    end
+    
   end
   
   module PackageApi
@@ -35,6 +41,7 @@ module CranApi
         package_url = url_for_package options
         source = open(package_url)
         gz = Zlib::GzipReader.new(source)
+        parse_package_description(get_archived_package_description(gz))
       end
       
       def get_archived_package_description gz
@@ -54,10 +61,30 @@ module CranApi
       end
       
       def url_for_package options
-        return "#{URL}/#{options.name}/#{options.version}"
+        return "#{CRAN_CONFIG['url']}/#{options['Package']}_#{options['Version']}.tar.gz"
       end
  
     end
   end
   
+  class Cran
+    def update_packages
+      url = "#{CRAN_CONFIG['url']}/PACKAGES"
+      packages = CranApi::grab_packages_locally
+      len = packages.length
+      i = 0
+      packages.each do |options|
+         i += 1
+         puts "Fetching package [#{i}/#{len}]"
+         begin
+           package = Package.update_package(options)
+           package_description = PackageApi::grab_package_info(options)
+           package.add_version(package_description)
+        rescue 
+          puts "Something is wrong, moving on"
+        end
+      end
+    end
+  end
 end
+

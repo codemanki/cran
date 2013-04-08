@@ -1,6 +1,6 @@
 class Package < ActiveRecord::Base
   attr_accessible :name
-  has_many :versions
+  has_many :versions, :dependent => :destroy
   
   class << self
     

@@ -1,9 +1,20 @@
 class Version < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :package
-  has_many :authors, :class_name => "Person", :conditions => {is_maintainer: false}
-  has_many :maintainers, :class_name => "Person", :conditions => {is_maintainer: true}
+  has_many :authors, :class_name => "Person", :conditions => {is_maintainer: false}, :dependent => :destroy
+  has_many :maintainers, :class_name => "Person", :conditions => {is_maintainer: true}, :dependent => :destroy
   
+  
+  def create_people people, is_maintainer = false
+    persons = people.split(/,|and/)
+    
+    persons.each do |person|
+      person.strip!
+      attrs = {version_id: self.id, name: person, is_maintainer: is_maintainer}
+      Person.where(attrs).first || Person.create(attrs)
+    end
+  end
+    
   class << self
     
     def insert_version package, options
@@ -27,15 +38,6 @@ class Version < ActiveRecord::Base
     end
 
   end
-  
-  def create_people people, is_maintainer = false
-    persons = people.split(/,|and/)
-    
-    persons.each do |person|
-      person.strip!
-      attrs = {version_id: self.id, name: person, is_maintainer: is_maintainer}
-      Person.where(attrs).first || Person.create(attrs)
-    end
-  end
+
   
 end

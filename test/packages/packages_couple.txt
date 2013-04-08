@@ -1,0 +1,114 @@
+Package: A3
+Version: 0.9.2
+Depends: R (>= 2.15.0), xtable, pbapply
+Suggests: randomForest, e1071
+License: GPL (>= 2)
+NeedsCompilation: no
+
+Package: abc
+Version: 1.6
+Depends: R (>= 2.10), MASS, nnet, quantreg, locfit
+License: GPL (>= 3)
+NeedsCompilation: no
+
+Package: abcdeFBA
+Version: 0.4
+Depends: Rglpk,rgl,corrplot,lattice,R (>= 2.10)
+Suggests: LIM,sybil
+License: GPL-2
+NeedsCompilation: no
+
+Package: abctools
+Version: 0.1-2
+Depends: R (>= 2.10), abc, abind, pls
+License: GPL
+NeedsCompilation: yes
+
+Package: abd
+Version: 0.2-5
+Depends: R (>= 2.10), nlme, lattice, grid, mosaic
+Suggests: boot, car, ggplot2, plyr, HH, ICC, vcd, Hmisc, manipulate
+License: GPL-2
+NeedsCompilation: no
+
+Package: abind
+Version: 1.4-0
+Depends: R (>= 1.5.0)
+License: LGPL (>= 2)
+NeedsCompilation: no
+
+Package: aBioMarVsuit
+Version: 1.0
+Depends: glmnet, graphics, gplots, pls, survival, DLBCL, superpc,
+        utils, methods, stats, Biobase
+License: GPL-3
+NeedsCompilation: no
+
+Package: abn
+Version: 0.83
+Depends: R (>= 2.15.1)
+Suggests: INLA, Rgraphviz, Cairo
+License: GPL (>= 2)
+NeedsCompilation: yes
+
+Package: AcceptanceSampling
+Version: 1.0-2
+Depends: methods, R(>= 2.4.0), stats
+Imports: graphics
+License: GPL (>= 3)
+NeedsCompilation: no
+
+Package: ACCLMA
+Version: 1.0
+License: GPL-2
+NeedsCompilation: no
+
+Package: ACD
+Version: 1.5
+Depends: R(>= 2.13.0)
+License: GPL (>= 2)
+NeedsCompilation: no
+
+Package: Ace
+Version: 0.0.8
+Depends: R (>= 2.9.0), stats
+License: GPL (>= 2)
+NeedsCompilation: no
+
+Package: acepack
+Version: 1.3-3.2
+License: MIT + file LICENSE
+NeedsCompilation: yes
+
+Package: acer
+Version: 0.1.2
+Depends: Rcpp
+LinkingTo: Rcpp
+License: GPL-3
+NeedsCompilation: yes
+
+Package: aCGH.Spline
+Version: 2.2
+Depends: rJava
+License: GPL (>= 2)
+NeedsCompilation: no
+
+Package: ACNE
+Version: 0.5.0
+Depends: R (>= 2.10.0), R.methodsS3 (>= 1.2.1), R.oo (>= 1.8.2),
+        matrixStats (>= 0.3.0), aroma.affymetrix (>= 2.2.0), MASS
+Imports: R.utils (>= 1.8.5)
+License: LGPL (>= 2.1)
+NeedsCompilation: no
+
+Package: aCRM
+Version: 0.1.0
+Imports: dummies, randomForest, kernelFactory, ada
+License: GPL (>= 2)
+NeedsCompilation: no
+
+Package: acs
+Version: 0.8
+Depends: stringr, methods
+License: GPL-3
+NeedsCompilation: no
