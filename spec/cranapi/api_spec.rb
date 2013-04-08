@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Api should" do
+describe "Api" do
   before :all do 
     path = File.dirname(__FILE__) + '/../../test/packages/'
     @package_1 = File.read(path + "packages_1.txt")
@@ -35,10 +35,38 @@ describe "Api should" do
   end
   
   it "should throw an error because there is no package name" do
-    expect { CranApi.parse_packages(@package_error_1)}.to raise_error(CranApi::PackageParsingError, /no package/)
+    expect { CranApi.parse_packages(@package_error_1)}.to raise_error(CranApi::PackagesListParsingError, /no package/)
   end
   
   it "should throw an error because key is defined twice for same package" do
-    expect { CranApi.parse_packages(@package_error_2)}.to raise_error(CranApi::PackageParsingError, /already defined/)
+    expect { CranApi.parse_packages(@package_error_2)}.to raise_error(CranApi::PackagesListParsingError, /already defined/)
   end
+  
+  describe "using internets" do 
+    before :all do 
+      CranApi.stubs(:read_file_from_url).returns(@package_2)
+    end
+    
+    it "grab packages" do
+      packages = CranApi.grab_packages("http://google.com")
+      packages.length.should eql 2
+
+      packages[0][:name].should eql "A3"
+      packages[1][:name].should eql "abc"
+    end
+  end
+  
+  describe "using packages" do 
+    before :all do
+      path = File.dirname(__FILE__) + '/../../test/package_files/'
+      @package_a3 = Zlib::GzipReader.open(path + "A3_0.9.2.tar.gz")
+    end
+    
+    it "should parse package" do 
+      bla = CranApi::PackageApi.parse_archived_package(@package_a3)
+      
+      pp Dcf.parse(bla << bla)
+    end
+  end
+  
 end
