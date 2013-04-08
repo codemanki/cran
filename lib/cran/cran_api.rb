@@ -56,12 +56,11 @@ module CranApi
       
       def parse_package_description(content)
         package = Dcf.parse(content)
-        return package[0] if package[0]
-        return nil
+        package[0] || nil 
       end
       
       def url_for_package options
-        return "#{CRAN_CONFIG['url']}/#{options['Package']}_#{options['Version']}.tar.gz"
+        "#{CRAN_CONFIG['url']}/#{options['Package']}_#{options['Version']}.tar.gz"
       end
  
     end
@@ -70,7 +69,7 @@ module CranApi
   class Cran
     def update_packages
       url = "#{CRAN_CONFIG['url']}/PACKAGES"
-      packages = CranApi::grab_packages_locally
+      packages = CranApi::grab_packages_locally # CranApi::grab_packages(url)
       len = packages.length
       i = 0
       packages.each do |options|
