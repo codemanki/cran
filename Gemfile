@@ -42,3 +42,7 @@ gem 'treetop-dcf'
 group :test do
   gem 'shoulda'
 end
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+end
