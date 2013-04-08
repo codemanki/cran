@@ -1,0 +1,7 @@
+Package: zic
+Version: 0.7.5
+Depends: Rcpp (>= 0.9.10), RcppArmadillo (>= 0.3.0), coda (>= 0.14-2)
+LinkingTo: Rcpp, RcppArmadillo
+License: GPL (>= 2)
+NeedsCompilation: yes
+License: GPL (>= 2)
