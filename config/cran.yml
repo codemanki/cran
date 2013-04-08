@@ -1,0 +1,5 @@
+test:
+    url: "http://cran.r-project.org/src/contrib/PACKAGES"
+
+development:
+    url: "http://cran.r-project.org/src/contrib/PACKAGES"
