@@ -16,15 +16,18 @@ class Version < ActiveRecord::Base
   end
     
   class << self
+    def existing_version options
+      Version.where(version: options["Version"])
+    end
     
     def insert_version package, options
-      existing = Version.where(version: options["Version"])
+      existing = existing_version options
       return existing if existing.exists?
 
       version = Version.new
       version.package_id = package.id
       version.version = options["Version"]
-      version.version_date = options["Date"].to_datetime
+     # version.version_date = options["Date"].to_datetime
       version.title = options["Title"]
       version.description = options["Description"]
       version.license = options["License"]

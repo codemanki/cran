@@ -71,6 +71,7 @@ module CranApi
       packages = CranApi::grab_packages_locally # CranApi::grab_packages(url)
       len = packages.length
       i = 0
+      
       packages.each do |options|
          i += 1
          puts "Fetching package [#{i}/#{len}]"
