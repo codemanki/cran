@@ -11,12 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408115207) do
+ActiveRecord::Schema.define(:version => 20130408115442) do
 
   create_table "packages", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "versions", :force => true do |t|
+    t.integer  "package_id"
+    t.string   "version"
+    t.datetime "version_date"
+    t.string   "title"
+    t.string   "description"
+    t.string   "license"
+    t.datetime "packaged"
+    t.datetime "published"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end
